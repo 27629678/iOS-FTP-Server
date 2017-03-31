@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA261F521E8E2CD200A071F7"
-               BuildableName = "ftp-server-ios.framework"
+               BuildableName = "NEFTPServer.framework"
                BlueprintName = "ftp-server-ios"
                ReferencedContainer = "container:ftp-server-ios.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA261F521E8E2CD200A071F7"
-            BuildableName = "ftp-server-ios.framework"
+            BuildableName = "NEFTPServer.framework"
             BlueprintName = "ftp-server-ios"
             ReferencedContainer = "container:ftp-server-ios.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA261F521E8E2CD200A071F7"
-            BuildableName = "ftp-server-ios.framework"
+            BuildableName = "NEFTPServer.framework"
             BlueprintName = "ftp-server-ios"
             ReferencedContainer = "container:ftp-server-ios.xcodeproj">
          </BuildableReference>

@@ -58,6 +58,7 @@
     
     [self.ftp stopFtpServer];
     self.ftp = nil;
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (void)startWithPort:(unsigned)port directory:(NSString *)dir
@@ -87,6 +88,7 @@
         return;
     }
     
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [self showAlertWithMessage:@"FTP Server is Running On %@:%@", wifi_ip_addr, @(port)];
 }
 

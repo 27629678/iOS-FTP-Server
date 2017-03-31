@@ -10,10 +10,8 @@
 
 @interface NEFTPServer : NSObject
 
-+ (instancetype)shareInstance;
++ (void)stop;
 
-- (void)stop;
-
-- (void)startWithPort:(unsigned)port directory:(NSString *)dir;
++ (void)startWithPort:(unsigned)port directory:(NSString *)dir;
 
 @end
