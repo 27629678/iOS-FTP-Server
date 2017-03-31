@@ -44,7 +44,7 @@
 		self.notificationObject = sender;
 		
 		// Load up commands
-        commands = @{
+        commands = [@{
             @"ack"  : @"doAck:",
             @"cdup" : @"doCdUp:",
             @"cwd"  : @"doCwd:",
@@ -74,7 +74,7 @@
             @"syst" : @"doSyst:",
             @"type" : @"doType:",
             @"user" : @"doUser:"
-        };
+        } retain];
 		
 		// Clear out connections list
 		NSMutableArray *myConnections = [[NSMutableArray alloc] init];

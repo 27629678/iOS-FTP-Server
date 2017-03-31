@@ -27,7 +27,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [NEFTPServer new];
-        [instance autorelease];
     });
     
     return instance;
@@ -45,9 +44,8 @@
 
 - (void)dealloc
 {
+    [self.ftp release];
     [super dealloc];
-    
-    self.ftp = nil;
 }
 
 #pragma mark - private
@@ -67,42 +65,43 @@
     [self stop];
     
     // is wifi available
-    NSString *wifi_ip_addr = [[NetworkController localWifiIPAddress] autorelease];
-    if (wifi_ip_addr.length == 0) {
+    NSString *wifi_ip_addr = [NetworkController localWifiIPAddress];
+    if (wifi_ip_addr.length == 0 || [wifi_ip_addr isEqualToString:@"error"]) {
         [self showAlertWithMessage:@"Invalid IP, Please Check Wi-Fi Network!"];
         return;
     }
     
     // is directory available
     BOOL isDirectory = NO;
-    NSFileManager *fm = [[NSFileManager defaultManager] autorelease];
-    BOOL isExist = [fm fileExistsAtPath:dir isDirectory:&isDirectory];
+    BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:dir isDirectory:&isDirectory];
     
     if (!isExist || !isDirectory) {
-        NSString *msg =
-        [[NSString stringWithFormat:@"The Sepcified Directory: %@ Not Exist!", dir] autorelease];
-        [self showAlertWithMessage:msg];
+        [self showAlertWithMessage:@"The Sepcified Directory: %@ Not Exist!", dir];
         return;
     }
     
-    self.ftp = [[[FtpServer alloc] initWithPort:port withDir:dir notifyObject:self] autorelease];
+    self.ftp = [[FtpServer alloc] initWithPort:port withDir:dir notifyObject:nil];
+    
     if (!self.ftp) {
         [self showAlertWithMessage:@"Start FTP Server Failed!"];
         return;
     }
     
-    NSString *msg = [[NSString stringWithFormat:@"FTP Server is Listen On %@:%@",
-                      wifi_ip_addr, @(port)] autorelease];
-    [self showAlertWithMessage:msg];
+    [self showAlertWithMessage:@"FTP Server is Running On %@:%@", wifi_ip_addr, @(port)];
 }
 
-- (void)showAlertWithMessage:(NSString *)message
+- (void)showAlertWithMessage:(NSString *)format, ...
 {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:message
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK"
-                                           otherButtonTitles:nil] autorelease];
+    va_list vl;
+    va_start(vl, format);
+    NSString *message = [[[NSString alloc] initWithFormat:format arguments:vl] autorelease];
+    va_end(vl);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
     [alert show];
 }
 
