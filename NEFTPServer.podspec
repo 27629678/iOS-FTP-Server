@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "a ftp server library running on ios device"
 
-  # s.homepage     = "http://www.163.com/NEFTPServer"
+  s.homepage     = "http://mail.163.com/NEFTPServer"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "git@git.mail.netease.com:client/ftp-server-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://git.mail.netease.com/client/ftp-server-ios.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
