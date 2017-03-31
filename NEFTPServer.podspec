@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "a ftp server library running on ios device"
 
-  s.homepage     = "http://www.163.com/NEFTPServer"
+  # s.homepage     = "http://www.163.com/NEFTPServer"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
